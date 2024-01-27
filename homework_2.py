@@ -16,7 +16,7 @@ driver.maximize_window()
 
 
 # open the url
-driver.get('https://www.amazon.com/ap/signin
+driver.get('https://www.amazon.com/ap/signin')
 
 sleep(5)
 
@@ -44,6 +44,17 @@ driver.find_element(By.XPATH,"//a[@href='/gp/aw/help/ref=ap_mobile_signin_notifi
 
 driver.find_element(By.XPATH, "//span[@class='a-expander-prompt']")
 
+# forgot your password link
+
+driver.find_element(By.XPATH, "//div//a[@id='auth-fpp-link-bottom']")
+
+# Other issues with Sign-In link
+
+driver.find_element(By.XPATH, "//div//a[@id='ap-other-signin-issues-link']")
+
+#Create your Amazon account button
+
+driver.find_element(By.XPATH, "//span//a[@id='createAccountSubmit']")
 
 
 
