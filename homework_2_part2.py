@@ -1,33 +1,35 @@
-# Create a test case for the SignIn page using python & selenium script.
-
-# Practice with Locators
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as condition
 from time import sleep
 
-# get the path to the ChromeDriver executable
+# Start chrome browser:
 driver_path = ChromeDriverManager().install()
-
-# create a new Chrome browser instance
-service = Service(driver_path)
-driver = webdriver.Chrome(service=service)
+driver = webdriver.Chrome(service=Service(driver_path))
 driver.maximize_window()
+driver.implicitly_wait(5)
 
-
-# open the url
+# Open target.com
 driver.get('https://www.target.com/')
 
-# sleep(5)
+# Wait for the AccountLink element to be clickable
+account_link = WebDriverWait(driver, 10).until(
+    condition.element_to_be_clickable((By.XPATH, "//*[@data-test='@web/AccountLink']"))
+)
 
-# populate search field
-sign_in_link = driver.find_element(By.XPATH, "//a[@aria-label='Account, sign in']")
+# Click on the AccountLink
+account_link.click()
 
-sign_in_link.click()
+#click sign in
+driver.find_element(By.XPATH, "//span[@class='styles__ListItemText-sc-diphzn-1 jaMNVl']").click()
 
-driver.implicitly_wait(10)
 
-# # wait for 4 sec
-# sleep(4)
+text_shown = 'Sign into your Target account'
+actual_text = driver.find_element(By.XPATH, "//h1[@class='styles__StyledHeading-sc-1xmf98v-0 styles__AuthHeading-sc-kz6dq2-2 jhKFiw kcHdEa']").text
+
+assert text_shown == actual_text
+sleep(5)
