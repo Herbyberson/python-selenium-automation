@@ -16,16 +16,16 @@ def open_target_product_page(context, product_id):
 
 @then('Verify user can click through colors')
 def click_and_verify_colors(context):
-    expected_colors = ['micro chip', 'white', 'black']
+    expected_colors = ['Black', 'Deep Olive', 'White']
     actual_colors = []
 
     colors = context.driver.find_elements(*COLOR_OPTIONS)
     for color in colors:
         color.click()
         selected_color = context.driver.find_element(*SELECTED_COLOR).text
-        selected_color = selected_color.replace('color\n', '')
+        selected_color = selected_color.replace('Color\n', '')
         actual_colors.append(selected_color)
-        print(actual_colors)
+        print(selected_color)
 
     assert expected_colors == actual_colors, f'Expected color {expected_colors} does not match {actual_colors}'
 
