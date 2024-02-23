@@ -1,6 +1,9 @@
 # Created by 12396 at 2/1/2024
-Feature: # Enter feature name here
-  # Enter feature description here
+Feature: Target.com search tests
 
-  Scenario: # Enter scenario name here
-    # Enter steps here
+  Scenario: User can search for coffee on target
+    Given Open Target main page
+    When Search for coffee
+    Then Search results for coffee are shown
+    Then Page URL has search term coffee
+
