@@ -12,6 +12,12 @@ VIEW_CART_PAGE = (By.XPATH, "//a[@href='/cart']")
 ORDER_SUMMARY = (By.CSS_SELECTOR, "[data-test='cart-order-summary']")
 SIDE_NAV_BRAND_NAME =(By.CSS_SELECTOR, "h4[class*='styles__StyledHeading']")
 ORDER_NAME = (By.CSS_SELECTOR, "[data-test='cartItem-title']")
+LISTINGS = (By.CSS_SELECTOR, "[data-test='@web/site-top-of-funnel/ProductCardWrapper']")
+PRODUCT_TITLE = (By.CSS_SELECTOR, "[data-test='product-title']")
+PRODUCT_IMG = (By.CSS_SELECTOR, "[class*='ProductCardImage']")
+CART_ICON = (By.CSS_SELECTOR, "[data-test='@web/CartLink']")
+EMPTY_CART_MESSAGE = (By.CSS_SELECTOR, ".styles__StyledHeading-sc-1xmf98v-0.lfA-Dem")
+
 
 @given('Open Target main page')
 def open_target_main(context):
@@ -33,9 +39,17 @@ def verify_search_results_page_url(context, expected_part_url):
     context.app.search_results_page.verify_search_results_page_url(expected_part_url)
 
 
-LISTINGS = (By.CSS_SELECTOR, "[data-test='@web/site-top-of-funnel/ProductCardWrapper']")
-PRODUCT_TITLE = (By.CSS_SELECTOR, "[data-test='product-title']")
-PRODUCT_IMG = (By.CSS_SELECTOR, "[class*='ProductCardImage']")
+@when('Click on Cart icon')
+def click_on_cart_icon(context):
+    context.app.header.cart_button()
+
+
+@then('Verify "{cart_message}" message is shown')
+def verify_cart_message(context, cart_message):
+    context.app.empty_cart_page.verify_empty_cart_message(cart_message)
+
+
+
 
 
 @then('Verify that every product has a name and an image')
