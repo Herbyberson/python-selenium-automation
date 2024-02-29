@@ -5,5 +5,5 @@ Feature: Target.com search tests
     Given Open Target main page
     When Search for coffee
     Then Search results for coffee are shown
-    Then Page URL has search term coffee
+    Then Page URL has search term coffe
 

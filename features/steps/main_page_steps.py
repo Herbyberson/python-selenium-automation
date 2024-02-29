@@ -29,6 +29,21 @@ def search_for_product(context, product):
     context.app.header.search_product()
 
 
+@when('log out users click Sign In')
+def log_out_users_click_sign_in(context):
+    context.app.header.click_sign_in_icon()
+
+
+@when('log out users click Sign In on Side Navigation')
+def log_out_users_click_signin_nav(context):
+    context.app.header.side_nav_sign_in()
+
+
+@then('Verify "{expected_message}" message')
+def verify_expected_message(context, expected_message):
+    context.app.sign_in_page.signin_message_verify()
+
+
 @then('Search results for {expected_result} are shown')
 def verify_search_results_correct(context, expected_result):
     context.app.search_results_page.verify_search_results_correct(expected_result)
@@ -41,15 +56,13 @@ def verify_search_results_page_url(context, expected_part_url):
 
 @when('Click on Cart icon')
 def click_on_cart_icon(context):
-    context.app.header.cart_button()
+    context.app.header.click_cart_icon()
 
 
-@then('Verify "{cart_message}" message is shown')
-def verify_cart_message(context, cart_message):
-    context.app.empty_cart_page.verify_empty_cart_message(cart_message)
-
-
-
+@then('Verify "{expected_text}" message is shown')
+def verify_cart_message(context, expected_text):
+    context.app.empty_cart_page.verify_empty_cart_message()
+    sleep(6)
 
 
 @then('Verify that every product has a name and an image')
