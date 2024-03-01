@@ -3,14 +3,13 @@ from behave import given, when, then
 from time import sleep
 from selenium.webdriver.support import expected_conditions as EC
 
-
 SEARCH_FIELD = (By.ID, 'search')
 SEARCH_ICON = (By.XPATH, "//button[@data-test='@web/Search/SearchButton']")
 ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, "[id*='addToCartButton']")
 SIDE_NAV_ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, "[data-test='orderPickupButton']")
 VIEW_CART_PAGE = (By.XPATH, "//a[@href='/cart']")
 ORDER_SUMMARY = (By.CSS_SELECTOR, "[data-test='cart-order-summary']")
-SIDE_NAV_BRAND_NAME =(By.CSS_SELECTOR, "h4[class*='styles__StyledHeading']")
+SIDE_NAV_BRAND_NAME = (By.CSS_SELECTOR, "h4[class*='styles__StyledHeading']")
 ORDER_NAME = (By.CSS_SELECTOR, "[data-test='cartItem-title']")
 LISTINGS = (By.CSS_SELECTOR, "[data-test='@web/site-top-of-funnel/ProductCardWrapper']")
 PRODUCT_TITLE = (By.CSS_SELECTOR, "[data-test='product-title']")
@@ -25,13 +24,20 @@ def open_target_main(context):
 
 
 @when('Search for {product}')
-def search_for_product(context, product):
+def search(context, product):
     context.app.header.search_product()
+    context.app.header.click_search_button()
 
 
 @when('log out users click Sign In')
 def log_out_users_click_sign_in(context):
     context.app.header.click_sign_in_icon()
+
+
+@then('Add to cart first result of product')
+def add_to_cart_first_result(context):
+    context.app.search_results_page.click_add_to_cart_button()
+    context.app.search_results_page.click_add_to_cart_side_nav()
 
 
 @when('log out users click Sign In on Side Navigation')
@@ -75,18 +81,17 @@ def verify_product_name(context):
     all_products = context.driver.find_elements(*LISTINGS)
 
     for product in all_products:
-
         title = product.find_element(*PRODUCT_TITLE).text
         print(title)
         assert title, 'Product title not shown'
         product.find_element(*PRODUCT_IMG)
 
 
-
 @when('Click on Add to Cart button')
 def click_on_add_to_cart(context):
     context.driver.find_element(*ADD_TO_CART_BUTTON).click()
     sleep(6)
+
 
 @when('Store product name')
 def store_product_name(context):
@@ -116,6 +121,3 @@ def verify_cart_product(context):
     actual_name = context.driver.find_element(*ORDER_NAME).text
     assert context.product_name == actual_name, f"Expected {context.product_name}, but got {actual_name}"
     sleep(10)
-
-
-
