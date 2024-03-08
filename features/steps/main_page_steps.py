@@ -3,19 +3,19 @@ from behave import given, when, then
 from time import sleep
 from selenium.webdriver.support import expected_conditions as EC
 
-SEARCH_FIELD = (By.ID, 'search')
-SEARCH_ICON = (By.XPATH, "//button[@data-test='@web/Search/SearchButton']")
-ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, "[id*='addToCartButton']")
-SIDE_NAV_ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, "[data-test='orderPickupButton']")
-VIEW_CART_PAGE = (By.XPATH, "//a[@href='/cart']")
-ORDER_SUMMARY = (By.CSS_SELECTOR, "[data-test='cart-order-summary']")
-SIDE_NAV_BRAND_NAME = (By.CSS_SELECTOR, "h4[class*='styles__StyledHeading']")
-ORDER_NAME = (By.CSS_SELECTOR, "[data-test='cartItem-title']")
-LISTINGS = (By.CSS_SELECTOR, "[data-test='@web/site-top-of-funnel/ProductCardWrapper']")
-PRODUCT_TITLE = (By.CSS_SELECTOR, "[data-test='product-title']")
-PRODUCT_IMG = (By.CSS_SELECTOR, "[class*='ProductCardImage']")
-CART_ICON = (By.CSS_SELECTOR, "[data-test='@web/CartLink']")
-EMPTY_CART_MESSAGE = (By.CSS_SELECTOR, ".styles__StyledHeading-sc-1xmf98v-0.lfA-Dem")
+# SEARCH_FIELD = (By.ID, 'search')
+# SEARCH_ICON = (By.XPATH, "//button[@data-test='@web/Search/SearchButton']")
+# ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, "[id*='addToCartButton']")
+# SIDE_NAV_ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, "[data-test='orderPickupButton']")
+# VIEW_CART_PAGE = (By.XPATH, "//a[@href='/cart']")
+# ORDER_SUMMARY = (By.CSS_SELECTOR, "[data-test='cart-order-summary']")
+# SIDE_NAV_BRAND_NAME = (By.CSS_SELECTOR, "h4[class*='styles__StyledHeading']")
+# ORDER_NAME = (By.CSS_SELECTOR, "[data-test='cartItem-title']")
+# LISTINGS = (By.CSS_SELECTOR, "[data-test='@web/site-top-of-funnel/ProductCardWrapper']")
+# PRODUCT_TITLE = (By.CSS_SELECTOR, "[data-test='product-title']")
+# PRODUCT_IMG = (By.CSS_SELECTOR, "[class*='ProductCardImage']")
+# CART_ICON = (By.CSS_SELECTOR, "[data-test='@web/CartLink']")
+# EMPTY_CART_MESSAGE = (By.CSS_SELECTOR, ".styles__StyledHeading-sc-1xmf98v-0.lfA-Dem")
 
 
 @given('Open Target main page')
