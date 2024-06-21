@@ -41,7 +41,23 @@ driver.find_element(By.CSS_SELECTOR,"[placeholder='Search Amazon']")
 
 driver.find_element(By.CSS_SELECTOR, "[placeholder*='Search']")
 
+# multiple attributes
+
+driver.find_element(By.CSS_SELECTOR, "[title='Search'] [name='q']")
+
+# element by attribute value starting with
+
+driver.find_element(By.CSS_SELECTOR, "[placeholder^='Search']")
+
+
 #from parent ---to child---separate by space
 
 driver.find_element(By.CSS_SELECTOR, "#legalTextRow [href*='condition']")
 
+# select direct child element :
+
+# div > input
+
+# select element based on its position:
+
+# div:nth-child(2)
